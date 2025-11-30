@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransiLex - Transport Management Platform</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #fff; 
+            color: #004d99;/* Dark Blue */
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #004d99;/* Dark Blue */;
+        }
+
+        .nav-links a {
+            color: #004d99;/* Dark Blue */;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffc107; /* Amber/Gold Accent */
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 77, 153, 0.9), rgba(0, 77, 153, 0.8)), url('https://dummyimage.com/1200x500/004d99/ffffff.png&text=Modern+Transport+Management') center/cover no-repeat;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        #hero p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ffc107;
+            color: #004d99;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e0a800;
+        }
+
+        /* Features Section */
+        #features {
+            padding: 80px 0;
+            background-color: white;
+            text-align: center;
+        }
+
+        #features h2 {
+            font-size: 2.5em;
+            color: #004d99;
+            margin-bottom: 50px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background-color: #f1f1f1;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #004d99;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        /* Pricing Section */
+        #pricing {
+            padding: 80px 0;
+            background-color: #e9ecef;
+            text-align: center;
+        }
+
+        #pricing h2 {
+            font-size: 2.5em;
+            color: #004d99;
+            margin-bottom: 50px;
+        }
+
+        .pricing-table {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .plan-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .plan-card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .plan-card h3 {
+            font-size: 1.8em;
+            color: #004d99;
+            margin-bottom: 10px;
+        }
+
+        .plan-card .price {
+            font-size: 3em;
+            font-weight: 700;
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+        
+        .plan-card .sub-text {
+            color: #777;
+            margin-bottom: 25px;
+            font-weight: 500;
+            display: block;
+        }
+
+        .plan-details ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .plan-details li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.95em;
+        }
+        
+        .plan-details li:last-child {
+            border-bottom: none;
+        }
+
+        /* Plan specific styling for clarity */
+        .plan-1 .price { color: #28a745; } /* Green for Professional/0% fee */
+        .plan-2 .price { color: #dc3545; } /* Red for Starter/High % fee */
+        .plan-3 .price { color: #ffc107; } /* Yellow for Advanced/Moderate fee */
+
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.2em;
+            }
+
+            #hero p {
+                font-size: 1.1em;
+            }
+
+            .nav-links {
+                display: none; /* Hide nav links on mobile for simplicity */
+            }
+
+            .plan-card {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <nav>
+                <div class="logo"><img src="logo.svg" width="200px" height="100px"></div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#" class="cta-button" style="padding: 8px 15px; font-size: 0.9em; background-color: #007bff; color: white;">Get Started</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h1>The All-In-One Platform for Coach & Minibus Operators</h1>
+            <p>Automate your bookings, dispatch, and accounting. Save time and maximize your revenue with TransiLex's award-winning TMS.</p>
+            <a href="#pricing" class="cta-button">See Pricing & Start Today</a>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <h2>Streamline Your Entire Operation</h2>
+            <div class="feature-grid">
+                
+                <div class="feature-card">
+                    <h3>Seamless Booking Management</h3>
+                    <p>Integrate our instant online quote form into your website. Automatically track bookings from initial inquiry to final completion, manage deposits, and send automated email/SMS communications to customers and drivers.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Driver & Dispatch Automation</h3>
+                    <p>Effortlessly assign jobs, manage driver compliance, and track hours. Our integrated mobile app provides drivers with real-time job sheets and simple GPS tracking, eliminating paperwork and errors.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Integrated Financial Control</h3>
+                    <p>Centralize all your invoicing, payments, and credit control. Raise invoices and receipts in a few clicks, accept online payments (Stripe/PayPal), and synchronize data with popular accounting packages like Xero.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Flexible Pricing & Quoting</h3>
+                    <p>Set up advanced pricing rules based on distance, time, date, or fixed routes. Instantly generate quotes for customers online or use the calculator internally to ensure profit margins on every job.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container">
+            <h2>Simple, Transparent Pricing That Scales With You</h2>
+            <p style="margin-bottom: 40px; font-size: 1.1em; color: #555;">Choose the plan that best fits your business model—high upfront for zero transaction fees, or low upfront with commission.</p>
+
+            <div class="pricing-table">
+                
+                <div class="plan-card plan-2">
+                    <h3>Starter</h3>
+                    <span class="price">$0</span>
+                    <span class="sub-text">Setup Fee</span>
+                    
+                    <div class="plan-details">
+                        <ul>
+                            <li><strong>Monthly Fee:</strong> $12.50</li>
+                            <li style="font-weight: bold; color: #dc3545;"><strong>Transaction Fee: 6%</strong> (Commission per booking)</li>
+                            <li>No long-term commitment</li>
+                            <li>Basic Reporting</li>
+                            <li>Standard Features Included</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="cta-button" style="background-color: #dc3545; color: white; margin-top: 20px;">Choose Starter</a>
+                </div>
+
+                <div class="plan-card plan-3" style="border: 2px solid #ffc107;">
+                    <h3>Advanced</h3>
+                    <span class="price">$0</span>
+                    <span class="sub-text">Setup Fee</span>
+                    
+                    <div class="plan-details">
+                        <ul>
+                            <li><strong>Monthly Fee:</strong> $45.00</li>
+                            <li style="font-weight: bold; color: #ffc107;"><strong>Transaction Fee: 1.50%</strong> (Reduced commission)</li>
+                            <li>Advanced Reporting & Analytics</li>
+                            <li>Accounting Sync Feature</li>
+                            <li>Priority Email Support</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="cta-button" style="background-color: #ffc107; color: #004d99; margin-top: 20px;">Choose Advanced</a>
+                </div>
+
+                <div class="plan-card plan-1">
+                    <h3>Professional</h3>
+                    <span class="price">Contact Us</span>
+                    <span class="sub-text">One-time Setup Fee</span>
+                    
+                    <div class="plan-details">
+                        <ul>
+                            <li><strong>Monthly Fee:</strong> $12.50</li>
+                            <li style="font-weight: bold; color: #28a745;"><strong>Transaction Fee: 0%</strong> (No commission)</li>
+                            <li>Full Feature Set & Customizations</li>
+                            <li>Dedicated Account Manager</li>
+                            <li>24/7 Priority Support</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="cta-button" style="background-color: #28a745; color: white; margin-top: 20px;">Choose Professional</a>
+                </div>
+            </div>
+            
+            <p style="margin-top: 40px; font-size: 0.9em; color: #555;">*All plans include unlimited bookings, users, and vehicles.</p>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h3 style="color: white; margin-bottom: 15px;">Ready to revolutionise your transport business?</h3>
+            <a href="#" class="cta-button" style="background-color: #007bff; color: white;">Request a Free Demo</a>
+            <p style="margin-top: 20px;">&copy; 2025 TransiLex Transport Management Platform. | <a href="#" style="color: #bbb;">Privacy Policy</a> | <a href="#" style="color: #bbb;">Terms of Service</a></p>
+            <p style="margin-top: 10px; font-size: 0.8em;">Contact: sales@transilex.com | +1 (555) 123-4567</p>
+        </div>
+    </footer>
+
+</body>
+</html>
